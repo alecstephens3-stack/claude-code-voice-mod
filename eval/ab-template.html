@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Blind test · voice mod</title>
+<!-- SAI:FONTS -->
+<!-- SAI:KIT -->
+<style>
+  .ab-progress { font-family: var(--sai-font-label); font-size: 14.5px; letter-spacing: .04em; color: var(--sai-ink-2); margin-top: 14px; }
+  .ab-progress b { color: var(--sai-ink); }
+  #picks { margin-top: 56px; }
+  .ab-q { margin: 0 0 56px; }
+  .ab-q h3 { font-size: 26px; font-weight: 500; line-height: 1.25; margin: 10px 0 20px; max-width: 760px; }
+  .ab-qnote { font-size: 15px; color: var(--sai-ink-2); margin: -10px 0 18px; max-width: 760px; }
+  .ab-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+  .ab-reply { padding: 26px 28px 24px; margin: 0; min-width: 0; }
+  .ab-reply .ab-label { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .ab-reply .ab-label .sai-stamp { margin: 0; }
+  .ab-reply .ab-who { display: none; font-family: var(--sai-font-label); font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--sai-ink-2); }
+  body.ab-revealed .ab-reply .ab-who { display: inline; }
+  body.ab-revealed .ab-reply.is-mod { outline: 2px solid var(--sai-accent); outline-offset: 2px; }
+  .ab-body { font-size: 16px; line-height: 1.6; color: var(--sai-ink); overflow-wrap: anywhere; }
+  .ab-body h1, .ab-body h2, .ab-body h3, .ab-body h4 { font-size: 17px; font-weight: 600; margin: 18px 0 6px; line-height: 1.35; }
+  .ab-body p { margin: 0 0 12px; }
+  .ab-body ul, .ab-body ol { margin: 0 0 12px; padding-left: 22px; }
+  .ab-body li { margin: 0 0 6px; }
+  .ab-body pre { white-space: pre-wrap; background: rgba(255,255,255,.55); border: 1px solid rgba(23,19,16,.08); border-radius: 14px; padding: 14px 16px; font-family: var(--sai-font-body); font-size: 15px; line-height: 1.55; margin: 0 0 12px; }
+  .ab-body code { font-family: var(--sai-font-body); font-size: 15px; background: rgba(23,19,16,.06); border-radius: 6px; padding: 1px 5px; }
+  .ab-body pre code { background: none; padding: 0; }
+  .ab-body blockquote { margin: 0 0 12px 18px; color: var(--sai-ink-2); }
+  .ab-body hr { border: 0; border-top: 1px solid rgba(23,19,16,.12); margin: 16px 0; }
+  .ab-body table { border-collapse: collapse; font-size: 15px; margin: 0 0 12px; }
+  .ab-body td, .ab-body th { border-bottom: 1px solid rgba(23,19,16,.1); padding: 6px 10px 6px 0; text-align: left; }
+  .ab-page { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(23,19,16,.1); }
+  .ab-page .cap { font-family: var(--sai-font-label); font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--sai-accent); margin-bottom: 8px; }
+  .ab-page ol { margin: 0; padding-left: 22px; font-size: 15.5px; line-height: 1.55; }
+  .ab-choose { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 20px; }
+  .ab-choose .q { font-family: var(--sai-font-label); font-size: 14.5px; letter-spacing: .04em; color: var(--sai-ink-2); }
+  .ab-choose .sai-seg button { min-height: 44px; }
+  .ab-score { width: 100%; }
+  .ab-score .ab-n { text-align: right; white-space: nowrap; }
+  #ab-result { margin-top: 22px; }
+  #ab-result p { margin: 0 0 10px; }
+  @media (max-width: 860px) {
+    .ab-qnote { font-size: 15px; color: var(--sai-ink-2); margin: -10px 0 18px; max-width: 760px; }
+  .ab-pair { grid-template-columns: 1fr; }
+    .ab-q h3 { font-size: 22px; }
+    .ab-reply { padding: 22px 20px 20px; }
+  }
+</style>
+</head>
+<body class="sai-quiet">
+
+<div class="sai-dock">
+  <!-- SAI:LOGO -->
+  <span class="word">Stephens AI</span>
+  <nav><a class="on" href="#top">TEST</a><a href="#picks">PICK</a><a href="#reveal">REVEAL</a></nav>
+</div>
+
+<div class="sai-page">
+
+  <section id="top" class="sai-rise">
+    <span class="sai-stamp">Blind test</span>
+    <h1 class="sai-display">Which reply reads better? <em>Pick one for each question.</em></h1>
+    <p class="sai-lede">I answered the same questions twice: once the way I write today, and once with the new voice mod. A and B are shuffled on every question. Your picks save as you go, and the reveal at the bottom shows which was which.</p>
+    <p class="ab-progress" id="ab-progress"><b>0 of 0</b> picked</p>
+  </section>
+
+  <section id="picks" class="sai-rise"></section>
+
+  <section id="reveal" class="sai-night sai-rise">
+    <span class="sai-ember"></span>
+    <span class="sai-stamp corner on-night">Reveal</span>
+    <h3 class="sai-w-title">Which one was the mod?</h3>
+    <div class="sai-w-sub">Pick first, then reveal. The mod's replies get an outline, and the scores come from the writing check.</div>
+    <div class="ab-choose">
+      <button class="sai-btn primary" type="button" id="ab-reveal-btn">Reveal</button>
+      <button class="sai-copy" type="button" data-sai-copy="#ab-text" data-done="Copied">Copy my picks</button>
+    </div>
+    <div id="ab-result" hidden></div>
+    <pre id="ab-text" hidden></pre>
+  </section>
+
+  <footer class="sai-footer">
+    <span class="lockup">
+      <!-- SAI:LOGO -->
+      <span class="word">Stephens AI</span>
+    </span>
+    <span class="meta">BLIND TEST · __DATE__</span>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+(function () {
+  var DATA = /*DATA*/;
+  var ID = DATA.id;
+  var picks = {};
+  var picksEl = document.getElementById('picks');
+  marked.use({ renderer: { html: function () { return ''; } } });
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function replyHtml(r, label, isMod) {
+    var page = '';
+    (r.checklists || []).forEach(function (c) {
+      var steps = (c.steps || []).map(function (s) { return '<li>' + esc(typeof s === 'string' ? s : s.text) + '</li>'; }).join('');
+      page += '<div class="ab-page"><div class="cap">Opened in the browser as a checklist: ' + esc(c.title || '') + '</div><ol>' + steps + '</ol></div>';
+    });
+    return '<article class="ab-reply sai-pane' + (isMod ? ' is-mod' : '') + '">' +
+      '<div class="ab-label"><span class="sai-stamp">' + label + '</span><span class="ab-who">' + (isMod ? 'With the mod' : 'As I write today') + '</span></div>' +
+      '<div class="ab-body">' + marked.parse(r.reply || '_(no reply)_') + '</div>' + page + '</article>';
+  }
+
+  DATA.questions.forEach(function (q) {
+    var a = q.modIsA ? q.mod : q.base, b = q.modIsA ? q.base : q.mod;
+    var div = document.createElement('div');
+    div.className = 'ab-q';
+    div.innerHTML =
+      '<span class="sai-port"><span class="disc"></span><span class="ptext">' + String(q.n).padStart(2, '0') + ' · ' + esc(q.kind) + '</span></span>' +
+      '<h3>' + esc(q.prompt) + '</h3>' + (q.note ? '<p class="ab-qnote">' + esc(q.note) + '</p>' : '') +
+      '<div class="ab-pair">' + replyHtml(a, 'A', q.modIsA) + replyHtml(b, 'B', !q.modIsA) + '</div>' +
+      '<div class="ab-choose"><span class="q">Which reads better?</span>' +
+      '<div class="sai-seg" data-sai-seg="q' + q.n + '">' +
+      '<button type="button" data-value="a">A</button><button type="button" data-value="same">About the same</button><button type="button" data-value="b">B</button>' +
+      '</div></div>';
+    picksEl.appendChild(div);
+  });
+
+  function summaryText() {
+    var lines = ['Blind test ' + ID];
+    DATA.questions.forEach(function (q) {
+      var p = picks['q' + q.n];
+      var who = !p ? 'not picked' : p === 'same' ? 'about the same' : ((p === 'a') === q.modIsA ? 'the mod' : 'today');
+      lines.push(q.n + '. ' + q.prompt + ' -> ' + (p ? p.toUpperCase() + ' (' + who + ')' : who));
+    });
+    return lines.join('\n');
+  }
+
+  function render() {
+    var n = Object.keys(picks).length;
+    document.getElementById('ab-progress').innerHTML = '<b>' + n + ' of ' + DATA.questions.length + '</b> picked · <span id="ab-save">' + saveState + '</span>';
+    document.querySelectorAll('.sai-seg[data-sai-seg]').forEach(function (seg) {
+      var v = picks[seg.getAttribute('data-sai-seg')];
+      seg.querySelectorAll('button').forEach(function (btn) { btn.classList.toggle('on', btn.getAttribute('data-value') === v); });
+    });
+    document.getElementById('ab-text').textContent = summaryText();
+  }
+
+  var saveState = 'Saved';
+  function save() {
+    var ticks = {};
+    DATA.questions.forEach(function (q) {
+      ['a', 'b', 'same'].forEach(function (v) { ticks['q' + q.n + '-' + v] = picks['q' + q.n] === v; });
+    });
+    try { localStorage.setItem('blind:' + ID, JSON.stringify(picks)); } catch (e) {}
+    fetch('/api/checklist/' + ID, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ticks: ticks, title: 'Blind test ' + ID }) })
+      .then(function (r) { saveState = r.ok ? 'Saved' : 'Not saved'; render(); })
+      .catch(function () { saveState = 'Saved in this browser only'; render(); });
+  }
+
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('.sai-seg[data-sai-seg] button');
+    if (!btn) return;
+    picks[btn.parentElement.getAttribute('data-sai-seg')] = btn.getAttribute('data-value');
+    render(); save();
+  });
+
+  document.getElementById('ab-reveal-btn').addEventListener('click', function () {
+    document.body.classList.add('ab-revealed');
+    var mod = 0, today = 0, same = 0;
+    DATA.questions.forEach(function (q) {
+      var p = picks['q' + q.n];
+      if (!p) return;
+      if (p === 'same') same++; else if ((p === 'a') === q.modIsA) mod++; else today++;
+    });
+    var s = DATA.scores, rows = DATA.scoreRows.map(function (r) {
+      return '<tr><td>' + esc(r.label) + '</td><td class="ab-n">' + esc(r.base) + '</td><td class="ab-n">' + esc(r.mod) + '</td></tr>';
+    }).join('');
+    var box = document.getElementById('ab-result');
+    box.innerHTML = '<p>You picked the mod on <b>' + mod + '</b>, today\'s version on <b>' + today + '</b>, and called <b>' + same + '</b> about the same.</p>' +
+      '<table class="sai-table ab-score"><tr><th>Writing check, all ' + DATA.questions.length + ' replies</th><th class="ab-n">Today</th><th class="ab-n">With the mod</th></tr>' + rows + '</table>';
+    box.hidden = false;
+  });
+
+  fetch('/api/checklist/' + ID).then(function (r) { return r.json(); }).then(function (saved) {
+    var t = (saved && saved.ticks) || {};
+    Object.keys(t).forEach(function (k) { if (t[k]) { var m = k.match(/^(q\d+)-(a|b|same)$/); if (m) picks[m[1]] = m[2]; } });
+    render();
+  }).catch(function () {
+    try { picks = JSON.parse(localStorage.getItem('blind:' + ID) || '{}'); } catch (e) {}
+    saveState = 'Saved in this browser only';
+    render();
+  });
+  render();
+})();
+</script>
+<!-- SAI:JS -->
+</body>
+</html>

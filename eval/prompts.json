@@ -1,0 +1,12 @@
+[
+  {"kind": "status", "prompt": "Where are we with the invoice app for the bookkeeper?"},
+  {"kind": "steps", "prompt": "What do I need to get done before Thursday's podcast recording?"},
+  {"kind": "explain", "prompt": "Explain the claims tracker the way I'd explain it to a practice owner."},
+  {"kind": "email", "prompt": "Draft a short email to Dana asking her to open the invoice app and click Close once so the new rules load."},
+  {"kind": "judgment", "prompt": "Honest read: is cold email working for us?"},
+  {"kind": "steps", "prompt": "Give me the steps to test the recording setup with my co-founder on Monday."},
+  {"kind": "explain", "prompt": "What should I tell a client is the difference between the front desk knowledge base and the time-off system?"},
+  {"kind": "judgment", "prompt": "Should I spend time on the trade association referral this month? Short answer."},
+  {"kind": "steps", "prompt": "Write the steps the bookkeeper follows if the invoice app stops filing bills."},
+  {"kind": "status", "prompt": "What's on my plate this weekend?"}
+]
