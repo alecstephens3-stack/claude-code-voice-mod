@@ -4,12 +4,11 @@ A Claude Code mod (a plugin with TypeScript function hooks) that gives the agent
 consistent writing voice, checks every reply and every outgoing draft against it, and moves
 step-by-step browser tasks out of the chat into a checklist page whose ticks are saved.
 
-I run most of my consultancy's day-to-day through Claude Code in the VS Code panel. The
-model is the same one that writes well on claude.ai, but inside Claude Code it writes like a
-terminal tool: file paths in every answer, commands I'm expected to run, headers on a
-three-sentence reply. I wrote rules for this in CLAUDE.md and they still broke; one session
-summary came back as a wall of paths and shell ids. This mod moves the voice into the system
-prompt and backs it with a deterministic check, so a slip gets caught on the turn it happens.
+I run most of my consultancy's day-to-day through Claude Code in the VS Code panel. Inside
+Claude Code the model writes like a terminal tool: file paths in every answer, commands I'm
+expected to run, headers on a three-sentence reply. Rules in CLAUDE.md didn't hold, so this mod
+moves the voice into the system prompt and backs it with a deterministic check that catches a
+slip on the turn it happens.
 
 ## How it works
 
@@ -19,7 +18,7 @@ functions under `hooks/lib/`, which is what the tests cover.
 `prompt.compose` puts `voice/voice.md` into the system prompt as its own section, ahead of
 the session sections, and rewrites the built-in lines that describe output as markdown "in
 a terminal" or ask for `file_path:line_number` references. A rule in CLAUDE.md arrives as
-a user message; in the system prompt it reads as instruction.
+a user message; this mod puts it in the system prompt instead.
 
 `turn.step` fixes two kinds of slip while the reply streams: a stock opener ("Certainly!",
 "Absolutely,") is dropped, and the stiff verb forms listed in `hooks/lib/live.ts` become
@@ -114,7 +113,7 @@ server in the project:
 Without it, checklist pages open as files and ticks stay in the browser.
 
 Then rewrite `voice/voice.md` for yourself. The one here is an example for "Sam", a founder
-of a small consultancy, and its rules are only as good as they fit you.
+of a small consultancy, so replace its rules with yours.
 
 ## Tests
 
@@ -141,10 +140,9 @@ Nothing in the mod calls a model. `claude plugin validate` lists every engine ca
 makes, and none of them is a model or agent call, so it adds no cost per turn.
 
 The live fixer stays tiny on purpose. Anything that needs judgment goes to the after-turn
-note so the model rewrites in its own words; a fixer that guessed would put words in its
-mouth.
+note so the model rewrites it itself; a live fixer that guessed could change what the reply means.
 
-Feedback goes to the model as a private note instead of a warning in the chat. I measured
+Feedback goes to the model as a private note instead of a warning in the chat. I checked
 that a user-role row appended with `$.session.append` reaches the model and is never emitted
 to the VS Code stream, so the note can be specific without cluttering the conversation.
 
