@@ -1,0 +1,10 @@
+{
+  "name": "voice-mod",
+  "version": "0.5.3",
+  "description": "One writing voice for the agent, a check on every reply and outgoing draft, and browser steps moved into a checklist page with saved ticks.",
+  "author": {
+    "name": "Stephens AI LLC",
+    "email": "alec@stephensai.co"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "claude-code-voice-mod",
+  "version": "0.5.3",
+  "private": true,
+  "description": "A Claude Code mod that gives the agent one writing voice, checks what it writes, and moves browser steps into a checklist page.",
+  "license": "MIT",
+  "author": "Alec Stephens <alec@stephensai.co>",
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:ts && npm run test:py",
+    "test:ts": "vitest run",
+    "test:py": "python3 -m unittest discover -s checker/tests && python3 -m unittest discover -s server/tests"
+  },
+  "devDependencies": {
+    "vitest": "3.2.4"
+  }
+}
