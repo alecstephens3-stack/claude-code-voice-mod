@@ -1,0 +1,15 @@
+{
+  "browser": ["open"],
+  "pageServer": "http://localhost:7777",
+  "pagesDir": "artifacts/checklists",
+  "dataDir": ".voice-mod",
+  "proofFiles": ["docs/portfolio.md"],
+  "designFingerprint": "",
+  "home": { "name": "London", "tz": "Europe/London" },
+  "clientZones": [
+    { "name": "Eastern", "tz": "America/New_York" },
+    { "name": "Central", "tz": "America/Chicago" },
+    { "name": "Mountain", "tz": "America/Denver" },
+    { "name": "Pacific", "tz": "America/Los_Angeles" }
+  ]
+}
